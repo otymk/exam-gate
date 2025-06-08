@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>トップページ:ログイン</title>
+    <link rel="stylesheet" th:href="@{/css/formstyles.css}">
+</head>
+
+<body>
+    <header>
+        <h2>試験申請</h2>
+    </header>
+    <h3 style="text-align: center; margin-bottom: 0;">ログインしてください</h3>
+    
+    <!--　エラーメッセージ表示　-->
+    <div th:if="${param.error}">
+        <p style="text-align: center; margin-bottom: 0; color:red;">**入力内容に誤りがあります**</p>
+    </div>
+    
+    <main>
+        <div class="content-wrapper">
+
+            <!-- 学生用ログインフォーム -->
+            <section id="studentContent" style="display: block;">
+                <form th:action="@{/student/login}" method="post">
+                    <div class="form-group">
+                        <label>学生番号:</label>
+                        <input type="text" name="studentId"><br>
+                    </div>
+                    <div class="form-group">
+                        <label>氏名:</label>
+                        <input type="text" name="name"><br>
+                    </div>
+                    <div class="form-group">
+                        <label>メールアドレス:</label>
+                        <input type="text" name="mail"><br>
+                    </div>
+                    <div class="form-action">
+                        <button type="submit">ログイン</button>
+                    </div>
+                    <div class="form-action">
+                        <button type="button" onclick="showAdmin()">管理者用</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- 管理者用ログインフォーム -->
+            <section id="adminContent" style="display: none;">
+                <form th:action="@{/admin/adminLogin}" method="post">
+                    <div class="form-group">
+                        <label>管理者ID:</label>
+                        <input type="text" name="adminId"><br>
+                    </div>
+                    <div class="form-group">
+                        <label>パスワード:</label>
+                        <input type="password" name="pass"><br>
+                    </div>
+                    <div class="form-action">
+                        <button type="submit">ログイン</botton>
+                    </div>
+                    <div class="form-action">
+                        <button type="button" onclick="showStudent()">学生用</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+        <script>
+        function showStudent() {
+            document.getElementById('studentContent').style.display = 'block';
+            document.getElementById('adminContent').style.display = 'none';
+        }
+        function showAdmin() {
+            document.getElementById('studentContent').style.display = 'none';
+            document.getElementById('adminContent').style.display = 'block';
+        }
+        </script>
+</body>   
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>トップページ: ログイン</title>
+    <!-- 共通スタイルを適用 -->
+    <link rel="stylesheet" th:href="@{/css/stylewhite.css}" />
+    </head>
+
+<body class="no-sidemenu">
+    <div id="container">
+        <!-- ヘッダー -->
+        <header>
+            <h1 id="logo">Sample Company</h1>
+            <address>TEL:098-000-000</address>
+        </header>
+
+        <!-- メインイメージ -->
+        <aside id="mainimg">
+            <img th:src="@{/images/1.jpg}" alt="メインイメージ" style="width:100%; height:30vh;" />
+        </aside>
+
+        <!-- コンテンツ + サイドメニュー -->
+        <div id="contents">
+            <!-- メイン（ログインフォーム） -->
+            <main>
+                <section>
+                    <h2>Welcome!</h2>
+
+                    <p th:if="${logoutMessage}" style="color: green; margin: 1rem;" th:text="${logoutMessage}"></p>
+                    <h4>ログインしてください。</h4>
+
+                    <!-- エラーメッセージ表示 -->
+                    <div th:if="${errorMessage}" style="color: red; margin: 1rem;" th:text="${errorMessage}"></div>
+                    
+                    <!-- 学生用ログインフォーム -->
+                    <div id="studentContent">
+                        <form th:action="@{/student/login}" method="post">
+                            <div class="form-group">
+                                <label>学生番号:</label>
+                                <input type="text" name="studentId" />
+                            </div>
+                            <div class="form-group">
+                                <label>氏名:</label>
+                                <input type="text" name="name" />
+                            </div>
+                            <div class="form-group">
+                                <label>メールアドレス:</label>
+                                <input type="text" name="mail" />
+                            </div>
+                            <div class="form-action">
+                                <button class="btn" type="submit">ログイン</button>
+                            </div>
+                            <div class="form-action">
+                                <button id="toAdminBtn" class="btn" type="button">管理者用</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- 管理者用ログインフォーム（最初は隠す） -->
+                    <div id="adminContent" style="display:none;">
+                        <form th:action="@{/admin/adminLogin}" method="post">
+                            <div class="form-group">
+                                <label>管理者ID:</label>
+                                <input type="text" name="adminId" />
+                            </div>
+                            <div class="form-group">
+                                <label>パスワード:</label>
+                                <input type="password" name="pass" />
+                            </div>
+                            <div class="form-action">
+                                <button class="btn" type="submit">ログイン</button>
+                            </div>
+                            <div class="form-action">
+                                <button id="toStudentBtn" class="btn" type="button">学生用</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>   
+            </main>
+        </div><!--#contents-->
+
+        <!--左メニューは非表示-->
+        <div id="menubar" style="display:none"></div>
+
+        <!-- フッター -->
+        <footer>
+            <small>&copy; <a th:href="@{/}">SAMPLE COMPANY</a> All Rights Reserved.</small>
+            <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+        </footer>
+    
+    </div><!--#container-->
+
+    <!-- ページトップボタン -->
+    <div class="pagetop"><a href="#">▲</a></div>
+
+    <!-- ハンバーガーメニューアイコン -->
+    <div id="menubar_hdr">
+        <div class="menu-icon"><span></span><span></span><span></span></div>
+    </div>
+
+    <!--jQueryの読み込み-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!--このテンプレート専用のスクリプト-->
+    <script th:src="@{js/main.js}"></script>
+
+</body>
+</html>

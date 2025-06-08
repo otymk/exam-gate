@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>入力内容確認</title>
+    <link rel="stylesheet" th:href="@{/css/liststyles.css}">    
+</head>
+<body>
+    <div class="content-wrapeer">    
+        <header>
+            <h3>申請内容確認</h3>
+        </header>
+        <h4 style="text-align: center; margin-bottom: 1rem;">***以下の内容で申請します***</h4>
+        
+        <main>
+            
+            <section class="application">
+                <dl class="application-list">
+                    <dt>試験名:</dt>
+                    <dd th:text="${selectedExam.examName}"></dd>
+                    <dt>学生番号:</dt>
+                    <dd th:text="${loginStudent.studentId}"></dd>
+                    <dt>氏名:</dt>
+                    <dd th:text="${loginStudent.name}"></dd>
+                    <dt>学年:</dt>
+                    <dd th:text="${loginStudent.grade}"></dd>
+                    <dt>楽器:</dt>
+                    <dd th:text="${loginStudent.instrument}"></dd>
+                    <dt>編成:</dt>
+                    <dd th:text="${form.perfForm}"></dd>
+                    <dt>作曲者:</dt>
+                    <dd th:text="${form.composer}"></dd>
+                    <dt>生没年:</dt>
+                    <dd th:text="${form.years}"></dd>
+                    <dt>作品名:</dt>
+                    <dd th:text="${form.title}"></dd>
+                    <dt>楽章:</dt>
+                    <dd><pre th:text="${form.movement}"></pre></dd>
+                    <dt>演奏時間:</dt>
+                    <dd th:text="${form.duration}"></dd>
+                    <dt>共演者:</dt>
+                    <dd><pre th:text="${form.member}"></pre></dd>
+                    <dt>使用備品:</dt>
+                    <dd><pre th:text="${form.equipment}"></pre></dd>
+                    <dt>備考:</dt>
+                    <dd><pre th:text="${form.memo}"></pre></dd>
+                </dl>
+            </section>
+        </main>
+            <div class="form-actions">
+                <form th:action="@{/student/doApply}" method="post">
+                    <button type="submit">申請する</button>
+                </form>
+                <form th:action="@{/student/applyForm}" method="get">
+                    <button type="submit">修正する</button>
+                </form>
+            </div>
+        
+    </div>
+</body>
+</html>

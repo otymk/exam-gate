@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>管理者情報</title>
+  <!-- Template-Party white テーマを適用 -->
+  <link rel="stylesheet" th:href="@{/css/stylewhite.css}" />
+</head>
+<body>
+    <div id="container">
+    <!-- ヘッダー -->
+    <header>
+        <h1 id="logo">Sample Company</h1>
+        <address>TEL:098-000-000</address>
+    </header>
+
+    <!-- メインイメージ -->
+    <aside id="mainimg">
+        <img th:src="@{/images/1.jpg}" alt="メインイメージ" style="width:100%; height:30vh;" />
+    </aside>
+
+    <div id="contents">
+        <!-- メイン（管理者一覧） -->
+        <main>
+            <h2>管理者情報</h2>
+            
+            <!-- 操作ボタン -->
+            <form th:action="@{/admin/adminBatchAction}" method="post">                
+                <div class="action-item">
+                    <button class="btn" type="submit" name="action" value="add">追加</button>
+                    <span class="action-text">管理者を新規登録します。</span>
+                </div> 
+                <div class="action-item">    
+                    <button class="btn" type="submit" name="action" value="edit">修正</button>
+                    <span class="action-text">選択した管理者情報を修正します。</span>
+                </div>
+                <div class="action-item">
+                    <button class="btn" type="submit" name="action" value="delete" onclick="return confirm('削除しますか？')">削除</button>            
+                    <span class="action-text">選択した管理者を削除します。(複数選択可、復元はできません。)</span>
+                </div>
+
+                <!-- メッセージ表示 -->
+                <div th:if="${successMessage}" style="color: green; margin-bottom:1rem;" th:text="${successMessage}"></div>
+                <div th:if="${errorMessage}" style="color: red; margin-bottom:1rem;" th:text="${errorMessage}"></div>
+
+                <!-- 管理者一覧テーブル -->
+                <section>
+                    <table class="ta-admin">
+                    <thead>
+                        <tr>
+                        <th>選択</th>
+                        <th>管理者ID</th>
+                        <th>氏名</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="admin : ${adminList}">
+                        <td><input type="checkbox" name="selectedIds" th:value="${admin.adminId}" /></td>
+                        <td th:text="${admin.adminId}"></td>
+                        <td th:text="${admin.adminName}"></td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </section>
+            </form>
+        </main>
+
+        <!-- サイドメニュー -->
+        <div id="menubar">
+        <h3>MENU</h3>
+        <nav>
+            <ul>
+                <li><a th:href="@{/admin/adminMenu}">管理者メニュー</a></li>
+                <li><a th:href="@{/admin/studentList}">学生情報</a></li>
+                <li><a th:href="@{/admin/examList}">試験情報</a></li>
+                <li><a th:href="@{/logout}">ログアウト</a></li>
+            </ul>
+        </nav>
+        </div>
+    </div> <!-- /#contents -->
+
+    <!-- フッター -->
+    <footer>
+        <small>&copy; <a th:href="@{/}">SAMPLE COMPANY</a> All Rights Reserved.</small>
+        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+    </footer>
+    </div> <!-- /#container -->
+
+    <!-- ページトップボタン -->
+    <div class="pagetop"><a href="#">▲</a></div>
+
+    <!-- ハンバーガーメニューアイコン -->
+    <div id="menubar_hdr">
+    <div class="menu-icon"><span></span><span></span><span></span></div>
+    </div>
+
+    <!-- JS読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

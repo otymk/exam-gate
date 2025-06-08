@@ -1,0 +1,106 @@
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+main {
+    max-width: 500px;
+    margin: auto;
+    padding: 10px;
+    background-color: lavender;
+}
+
+nav {
+    margin-top: 20px;
+}
+
+.form-wrapper {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    width: 120px;
+    text-align: right;
+    margin-right: 0.5rem;
+}
+
+.form-group inupt,
+.form-group textarea {
+    flex: 1;
+}
+
+.form-section {
+    background-color: lavender;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 50px;
+}
+.form-actions {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+content-wrapper {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+header h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* ── exam-info セクション自体を中央寄せ ── */
+.exam-info {
+  max-width: 600px;    /* お好みで幅を調整 */
+  margin: 0 auto 2rem; /* 上下マージン + 左右中央寄せ */
+  padding: 0 1rem;     /* 横に余白 */
+}
+
+/* ── dt/dd をグリッドレイアウトで横揃え ── */
+.exam-info-list {
+  display: grid;
+  grid-template-columns: max-content auto; /* dt を必要幅、dd を残り */
+  grid-column-gap: 1rem;                   /* ラベルと値の間隔 */
+  justify-content: center;                 /* セクション内を中央寄せ */
+}
+
+/* ラベルを右寄せして「：」が揃うように */
+.exam-info-list dt {
+  text-align: right;
+  font-weight: bold;
+}
+
+/* dd は余白だけリセット */
+.exam-info-list dd {
+  margin: 0 0 0.5rem; /* 下にだけスペース */
+}
+
+/* studentContent / adminContent の中の <form> にだけ適用 */
+#studentContent form,
+#adminContent form {
+  display: flex;
+  flex-direction: column;  /* 子要素を縦に並べる */
+  align-items: center;     /* 横方向中央揃え */
+}
+
+/* 必要ならフォーム項目の幅を制限 */
+#studentContent .form-group,
+#adminContent .form-group {
+  width: 100%;
+  max-width: 400px;        /* お好みで */
+  margin-bottom: 1rem;
+}

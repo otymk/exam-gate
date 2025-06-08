@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ログアウト</title>
+  <link rel="stylesheet" th:href="@{/css/stylewhite.css}" />
+</head>
+<body class="no-sidemenu">
+  <div id="container">
+    <!-- ヘッダー -->
+      <header>
+          <h1 id="logo">Sample Company</h1>
+          <address>TEL:098-000-000</address>
+      </header>
+
+    <!-- メインイメージが不要なので省略 -->
+
+    <!-- コンテンツ -->
+    <div id="contents">
+      <main>
+        <section>
+          <h3 style="text-align: center; margin-bottom: 1rem;">ログアウトしました</h3>
+        </section>
+        <!-- ボタンを中央寄せ -->
+        <div class="form-action">
+          <a th:href="@{/}" class="btn">ログインページへ</a>
+        </div>
+      </main>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+      <small>&copy; <a th:href="@{/}">SAMPLE COMPANY</a> All Rights Reserved.</small>
+      <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+    </footer>
+  </div> <!-- /#container -->
+
+  <!-- ページトップボタン -->
+  <div class="pagetop"><a href="#">▲</a></div>
+
+  <!-- ハンバーガーメニューアイコン -->
+  <div id="menubar_hdr">
+  <div class="menu-icon"><span></span><span></span><span></span></div>
+  </div>
+
+  <!-- JS読み込み -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

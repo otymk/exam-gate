@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>試験情報</title>
+    <!-- Template-Party white テーマの共通スタイルを適用 -->
+    <link rel="stylesheet" th:href="@{/css/stylewhite.css}" />
+</head>
+<body>
+<div id="container">
+    <!-- ヘッダー -->
+    <header>
+        <h1 id="logo">Sample Company</h1>
+        <address>TEL:098-000-000</address>
+    </header>
+
+    <!-- メインイメージ -->
+    <aside id="mainimg">
+        <img th:src="@{/images/1.jpg}" alt="メインイメージ" style="width:100%; height:30vh;" />
+    </aside>
+
+    <!-- コンテンツ + サイドメニュー -->
+    <div id="contents">
+        <!-- メインエリア -->
+        <main>
+            <section>
+                <h2>試験一覧</h2>
+
+                <form th:action="@{/admin/examBatchAction}" method="post">
+
+                    <!-- 操作ボタン -->
+                    <div class="action-item">
+                        <button class="btn" type="submit" name="action" value="add">追加</button>
+                        <span class="action-text">試験を新規登録します。</span>
+                    </div> 
+                    <div class="action-item">    
+                        <button class="btn" type="submit" name="action" value="edit">修正</button>
+                        <span class="action-text">選択した試験情報を修正します。</span>
+                    </div>
+                    <div class="action-item">
+                        <button class="btn" type="submit" name="action" value="delete" onclick="return confirm('削除しますか？')">削除</button>            
+                        <span class="action-text">選択した試験を削除します。(複数選択可、復元はできません。)</span>
+                    </div>
+
+                    <p style="font-size: 16px;">申請状況を確認するには、<u>試験ID</u>をクリックしてください。</p>
+                    <!-- メッセージ表示 -->
+                    <div th:if="${successMessage}" style="color: green; font-size: 16px; margin-bottom: 1rem;" th:text="${successMessage}"></div>
+                    <div th:if="${errorMessage}" style="color: red; font-size: 16px; margin-bottom: 1rem;" th:text="${errorMessage}"></div>
+
+                    <!-- 試験一覧テーブル -->
+                    <section>
+                        <table class="ta-exam">
+                            <thead>
+                                <tr>
+                                    <th>■</th>
+                                    <th>試験ID</th>
+                                    <th>試験名</th>
+                                    <th>試験日</th>
+                                    <th>編成</th>
+                                    <th>申請期限</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="exam : ${examList}">
+                                    <td><input type="checkbox" name="selectedIds" th:value="${exam.examId}" /></td>
+                                    <td><a th:href="@{/admin/applicationStatusList(examId=${exam.examId})}" th:text="${exam.examId}"></a></td>
+                                    <td th:text="${exam.examName}"></td>
+                                    <td th:text="${exam.examDate}"></td>
+                                    <td th:text="${exam.perfForm}"></td>
+                                    <td th:text="${exam.applicationDeadline}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                </form>
+            </section>
+        </main>
+
+        <!-- サイドメニュー -->
+        <div id="menubar">
+            <h3>MENU</h3>
+            <nav>
+                <ul>
+                    <li><a th:href="@{/admin/adminMenu}">ホーム</a></li>
+                    <li><a th:href="@{/admin/studentList}">学生情報</a></li>
+                    <li><a th:href="@{/admin/adminList}">管理者情報</a></li>                    
+                    <li><a th:href="@{/logout}">ログアウト</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div> <!-- /#contents -->
+
+    <!-- フッター -->
+    <footer>
+        <small>&copy; <a th:href="@{/}">SAMPLE COMPANY</a> All Rights Reserved.</small>
+        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+    </footer>
+</div> <!-- /#container -->
+
+<!-- ページトップボタン -->
+<div class="pagetop"><a href="#">▲</a></div>
+
+<!-- ハンバーガーメニューアイコン -->
+<div id="menubar_hdr"><div class="menu-icon"><span></span><span></span><span></span></div></div>
+
+<!-- JS読み込み -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

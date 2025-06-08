@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>試験選択</title>
+    <link rel="stylesheet" th:href="@{/css/liststyles.css}">
+</head>
+<body>
+   <div class="content-wrapeer">
+        <header>
+            <h2>未申請の試験一覧</h2>
+        </header>
+
+        <main>
+            <p th:if="${#lists.isEmpty(session.examInfo)}">
+                対象の試験はありません。</p>
+            <p th:if="${!#lists.isEmpty(session.examInfo)}">
+                <p th:each="exam : ${session.examInfo}">
+                    <a th:href="@{/student/applyForm1(examId=${exam.examId})}" th:text="${exam.examName}"></a>
+                </p>
+            
+        </main>
+    </div>
+    <nav>
+        <a th:href="@{/logout}">ログアウト</a>
+    </nav>
+</body>
+</html>

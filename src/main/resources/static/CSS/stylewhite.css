@@ -1,0 +1,841 @@
+@charset "utf-8";
+
+
+
+/*Google Fontsの読み込み
+---------------------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&display=swap');
+
+
+/*animation1のキーフレーム設定（開閉ブロックのアニメーションに使用）
+---------------------------------------------------------------------------*/
+@keyframes animation1 {
+	0% {left: -200px;}
+	100% {left: 0px;}
+}
+
+
+/*opa1のキーフレーム設定（汎用的）
+---------------------------------------------------------------------------*/
+@keyframes opa1 {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+
+/*CSSカスタムプロパティ（サイト全体を一括管理する為の設定）
+---------------------------------------------------------------------------*/
+:root {
+
+	--primary-color: #333;			/*テンプレートのメインまたはアクセントカラー*/
+	--primary-inverse-color: #fff;	/*上のprimary-inverse-colorの対として使う色*/
+
+	--global-space: 3vw;				/*サイト内の余白の一括管理用。画面幅100%＝100vwです。*/
+}
+
+
+/*全体の設定
+---------------------------------------------------------------------------*/
+body * {box-sizing: border-box;}
+
+html,body {
+	font-size: 14px;	/*基準となるフォントサイズ。*/
+}
+
+	/*画面幅900px以上の追加指定*/
+	@media screen and (min-width:900px) {
+
+		html, body {
+			font-size: 16px;	/*基準となるフォントサイズ。*/
+		}
+
+	}/*追加指定ここまで*/
+
+
+body {
+	margin: 0;padding:0;
+	font-family: "M PLUS 1p", "ヒラギノ丸ゴ Pro", "Hiragino Maru Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;	/*フォント種類*/
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
+	-webkit-text-size-adjust: none;
+	background: var(--primary-inverse-color);		/*背景色。css冒頭で指定しているprimary-inverse-colorを読み込みます*/
+	color: var(--primary-color);	/*文字色。css冒頭で指定しているprimary-colorを読み込みます*/
+	line-height: 3;		/*行間*/
+	animation: opa1 0.2s 0.5s both;
+}
+
+/*リセット*/
+figure {margin: 0;}
+dd {margin: 0;}
+nav,ul,li,ol {margin: 0;padding: 0;}
+nav ul {list-style: none;}
+input {font-size: 1rem;}
+
+/*ul,ol*/
+ul,ol {margin-left: 1.5rem;margin-bottom: 1rem;}
+
+/*table全般の設定*/
+table {border-collapse:collapse;}
+
+/*画像全般の設定*/
+img {border: none;max-width: 100%;height: auto;vertical-align: middle;}
+
+/*videoタグ*/
+video {max-width: 100%;}
+
+/*iframeタグ*/
+iframe {width: 100%;}
+
+/*sectionが続く場合*/
+section + section {
+	margin-top: 3rem;	/*sectionの上に空けるスペース*/
+}
+
+
+/*リンク（全般）設定
+---------------------------------------------------------------------------*/
+a {color: inherit;transition: 0.3s;}
+
+a:hover {
+	opacity: 0.7;	/*マウスオン時に色を80%に薄くする*/
+}
+
+
+/*container（サイト全体を囲むボックス）
+---------------------------------------------------------------------------*/
+#container {
+	padding-left: var(--global-space);		/*左側の余白。css冒頭で指定しているglobal-spaceを読み込みます。*/
+	padding-right: var(--global-space);		/*右側の余白。css冒頭で指定しているglobal-spaceを読み込みます。*/
+}
+
+
+/*header（サイトロゴが入った最上部のボックス）
+---------------------------------------------------------------------------*/
+/*headerブロック*/
+header {
+	padding-top: var(--global-space);		/*上側の余白。css冒頭で指定しているglobal-spaceを読み込みます。*/
+	padding-bottom: var(--global-space);	/*下側の余白。css冒頭で指定しているglobal-spaceを読み込みます。*/
+	text-align: center;		/*中のテキストをセンタリング*/
+}
+
+/*TELブロック（header内のaddress）*/
+header address {
+	font-style: normal;
+}
+
+	/*画面幅901px以上の追加指定*/
+	@media screen and (min-width:901px) {
+	
+	/*headerブロック*/
+	header {
+		display: flex;	/*直接の子要素を横並びにする*/
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	}/*追加指定ここまで*/
+
+
+/*ヘッダー内のロゴ
+---------------------------------------------------------------------------*/
+#logo a {text-decoration: none;display: block;}
+
+/*ロゴ*/
+#logo {
+	margin: 0;padding: 0;
+	font-size: 1.5rem;	/*文字サイズを150%に*/
+}
+
+/*ロゴを画像にする場合*/
+#logo img {
+	display: block;
+	width: 200px;	/*ロゴ画像の幅*/
+}
+
+
+/*トップページのメイン画像
+---------------------------------------------------------------------------*/
+#mainimg {
+	margin-bottom: var(--global-space);	/*下に空けるスペース。css冒頭で指定しているglobal-spaceを読み込みます。*/
+}
+
+
+/*contents（左右のブロックを囲むボックス）
+---------------------------------------------------------------------------*/
+#contents {
+	display: flex;	/*直接の子要素を横並びにする*/
+	gap: var(--global-space);		/*左右のボックスの間に空けるスペース。css冒頭で指定しているglobal-spaceを読み込みます。*/
+}
+
+
+/*メインコンテンツ
+---------------------------------------------------------------------------*/
+main {
+	flex: 1;
+	line-height: 1.5;
+}
+
+/*h2見出し*/
+main h2 {
+	margin-top: 0;line-height: 1;
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+	border-bottom: 1px solid var(--primary-color);	/*下線の幅、線種、varは色の事でcss冒頭で指定しているprimary-colorを読み込みます*/
+}
+
+main h3 {
+	margin-top: 0;line-height: 1;
+	padding-bottom: 1rem;
+	margin-bottom: 0;
+	border-bottom: 1px solid var(--primary-color);	/*下線の幅、線種、varは色の事でcss冒頭で指定しているprimary-colorを読み込みます*/
+}
+
+main h4 {
+	margin: 0;
+}
+
+/*サブコンテンツ
+---------------------------------------------------------------------------*/
+/*メニューを囲むブロック*/
+#menubar {
+	order: -1;		/*左側に表示させる。右側がいいならこの１行を削除。*/
+	width: 230px;	/*幅。お好みで変更して下さい。*/
+}
+
+/*メニュー１個あたりの設定*/
+#menubar li {
+	border-bottom: 1px solid var(--primary-color);	/*下線の幅、線種、varは色の事でcss冒頭で指定しているprimary-colorを読み込みます*/
+}
+#menubar li a {
+	padding-left: 1rem;	/*左側の余白*/
+}
+
+/*h3見出し*/
+#menubar h3 {
+	margin: 0;
+	line-height:2;
+	font-size: 1rem;
+	background: var(--primary-color);	/*背景色。css冒頭で指定しているprimary-colorを読み込みます*/
+	color: var(--primary-inverse-color);	/*文字色。css冒頭で指定しているprimary-inverse-colorを読み込みます*/
+	text-align: center;	/*テキストをセンタリング*/
+}
+
+p {
+  line-height: 1.2;    /* 行間を調整 */
+  margin: 0.5em 0;     /* 段落前後の余白も調整 */
+}
+
+
+/*メニューブロック初期設定（※変更不要）
+---------------------------------------------------------------------------*/
+#menubar {opacity: 0;}
+#menubar ul {list-style: none;margin: 0;padding: 0;}
+#menubar a {display: block;text-decoration: none;}
+.large-screen #menubar {opacity: 1;}
+.small-screen #menubar.display-none {display: none;}
+.small-screen #menubar.display-block {display: block;opacity: 1;}
+#menubar_hdr.display-none {display: none;}
+
+
+/*小さな端末用の開閉ブロック
+---------------------------------------------------------------------------
+/*メニューブロック設定*/
+.small-screen #menubar.display-block {
+	position: fixed;overflow: auto;z-index: 100;
+	left: 0px;top: 0px;
+	width: 100%;
+	height: 100%;
+	padding-top: 100px;	/*上に空ける余白。ハンバーガーアイコンと重ならない為の指定ですのでお好みで変更OK。*/
+	color: var(--primary-color);	/*文字色。css冒頭で指定しているprimary-colorを読み込みます*/
+	background: var(--primary-inverse-color);		/*背景色。css冒頭で指定しているprimary-inverse-colorを読み込みます*/
+	animation: animation1 0.2s both;
+}
+
+/*メニュー１個あたりの設定*/
+.small-screen #menubar li {
+	border: 1px solid var(--primary-color);	/*枠線の幅、線種、varは色の事でcss冒頭で指定しているprimary-colorを読み込みます*/
+	margin: 1rem;			/*メニューの外側に空けるスペース*/
+	border-radius: 5px;		/*角を丸くする指定*/
+}
+.small-screen #menubar a {
+	padding: 1rem 3rem;		/*メニュー内の余白。上下、左右へ。*/
+}
+
+
+/*３本バー（ハンバーガー）アイコン設定
+---------------------------------------------------------------------------*/
+/*３本バーを囲むブロック*/
+#menubar_hdr {
+	animation: opa1 0.3s 0.5s both;
+	position: fixed;z-index: 101;
+	cursor: pointer;
+	top: 20px;		/*上からの配置場所*/
+	right: 20px;	/*右からの配置場所*/
+	width: 50px;	/*幅*/
+	height: 50px;	/*高さ*/
+	padding: 15px;	/*ブロック内の余白*/
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: transform 0.5s;
+	background: rgba(0,0,0,0.6);	/*背景色*/
+}
+
+/*ここは変更不要*/
+#menubar_hdr div {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+/*バーの設定*/
+#menubar_hdr div span {
+	display: block;
+	width: 100%;
+	height: 2px;			/*線の太さ*/
+	background-color: #fff;	/*線の色*/
+	border-radius: 2px;		/*コーナーを少しだけ丸く*/
+	transition: all 0.5s ease-in-out;
+	position: absolute;
+}
+
+/*以下変更不要*/
+#menubar_hdr div span:nth-child(1) {top: 0;}
+#menubar_hdr div span:nth-child(2) {top: 50%;transform: translateY(-50%);}
+#menubar_hdr div span:nth-child(3) {bottom: 0;}
+#menubar_hdr.ham div span:nth-child(1) {top: 50%;transform: translateY(-50%) rotate(45deg);}
+#menubar_hdr.ham div span:nth-child(2) {opacity: 0;}
+#menubar_hdr.ham div span:nth-child(3) {top: 50%;transform: translateY(-50%) rotate(-45deg);}
+
+
+/*フッター設定
+---------------------------------------------------------------------------*/
+footer small {font-size: 100%;}
+footer a {color: inherit;text-decoration: none;}
+footer .pr {display: block;}
+
+footer {
+	font-size: 0.8rem;		/*文字サイズ。80%です。*/
+	text-align: center;		/*内容をセンタリング*/
+	padding-top: 5rem;
+}
+
+
+/*list-normal（service.htmlで使っている２カラムボックス）
+---------------------------------------------------------------------------*/
+/*ボックス１個あたり*/
+.list-normal .list {
+	display: flex;		/*直接の子要素を横並びにする*/
+	gap: 2vw;			/*左右の間のマージン的なスペース*/
+	margin-bottom: var(--global-space);	/*ボックスの下に空けるスペース。css冒頭で指定しているglobal-spaceを読み込みます。*/
+	line-height: 2;		/*行間を少し狭く*/
+}
+
+/*テキストブロック*/
+.list-normal .text {
+	flex: 1;
+}
+
+/*画像ブロック*/
+.list-normal figure {
+	width: 40%;	/*幅。お好みで。*/
+}
+
+/*h4見出し*/
+.list-normal h4 {
+	margin: 0;
+	/*margin-bottom: 0.5rem;	下に少しスペースをとる*/
+	font-size: 1.2rem;	/*文字サイズを120%に*/
+}
+
+/*説明テキスト*/
+.list-normal p {
+	margin: 0;	
+}
+
+
+/*FAQ
+---------------------------------------------------------------------------*/
+.openclose {cursor: pointer;}
+
+/*FAQ全体を囲むボックス*/
+.faq {
+	line-height: 2;	/*行間を少しせまくする*/
+}
+
+/*質問*/
+.faq dt {
+	position: relative;
+	padding-left: 3rem; 	/*下の「回答」と数字部分を合わせる*/
+	border: 1px solid var(--primary-color);	/*枠線の幅、線種、varは色の事でcss冒頭で指定しているprimary-colorを読み込みます*/
+	padding-right: 1rem;	/*ボックス内の右側の余白*/
+	margin-bottom: 1rem;	/*ボックスの外（下）に空けるスペース*/
+	border-radius: 5px;		/*角を少しだけ丸くする*/
+}
+
+/*「Q」のテキスト*/
+.faq dt::before {
+	content: "Q.";			/*このテキストを表示させます*/
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding-left: 1rem;		/*テキストの左側に空ける余白*/
+}
+
+/*回答*/
+.faq dd {
+	margin-left: 3rem;		/*上の「質問」と数字部分を合わせる*/
+	margin-bottom: 1rem;	/*下に空けるスペース*/
+}
+
+
+/*テーブル（ta1）
+---------------------------------------------------------------------------*/
+/*ta1テーブルブロック設定*/
+.ta1 {
+	table-layout: fixed;
+	width: 90%;				/*幅*/
+	margin-bottom: 2rem;
+}
+
+.ta1, .ta1 td, .ta1 th {
+	border: 1px solid var(--primary-color);	/*テーブルの枠線の幅、線種、varは色のことでcss冒頭で指定しているprimary-colorを読み込みます。*/
+	padding: 1rem;			/*ボックス内の余白*/
+	word-break: break-all;	/*英語などのテキストを改行で自動的に折り返す設定。これがないと、テーブルを突き抜けて表示される場合があります。*/
+}
+
+/*th（左側）のみの設定*/
+.ta1 th {
+	width: 20%;			/*幅*/
+	text-align: left;	/*左よせにする*/
+	font-weight: normal;	/*太字を解除*/
+}
+
+.ta1 input {
+  width: 80%;          /* お好みの横幅に */
+  height: 2rem; 
+  }
+
+.ta1 textarea {
+	width: 80%;
+	height: 5rem;
+}
+
+/*学生情報テーブル（ta-student）
+---------------------------------------------------------------------------*/
+/*ta-studentテーブルブロック設定*/
+.ta-student {
+	table-layout: fixed;
+	width: 100%;				/*幅*/
+	margin: 2rem, auto;
+}
+
+.ta-student, .ta-student td, .ta-student th {
+	border: 1px solid var(--primary-color);	/*テーブルの枠線の幅、線種、varは色のことでcss冒頭で指定しているprimary-colorを読み込みます。*/
+	padding: 0.5rem;			/*ボックス内の余白*/
+	word-break: break-all;	/*英語などのテキストを改行で自動的に折り返す設定。これがないと、テーブルを突き抜けて表示される場合があります。*/
+	text-align: center;
+	vertical-align: middle;
+}
+
+/*thの設定　左から右へ*/
+.ta-student th:nth-child(1) { width: 5%; }
+.ta-student th:nth-child(2) { width: 15%; }
+.ta-student th:nth-child(3) { width: 20%; }
+.ta-student th:nth-child(4) { width: 15%; }
+.ta-student th:nth-child(5) { width: 20%; }
+.ta-student th:nth-child(6) { width: 25%; }
+
+/*tdの設定*/
+.ta-student td:nth-child(1) {		/*チェックボックス*/
+	text-align: center;
+	vertical-align: middle;
+}
+
+
+/*試験情報テーブル（ta-exam）
+---------------------------------------------------------------------------*/
+/*ta-examテーブルブロック設定*/
+.ta-exam {
+	table-layout: fixed;
+	width: 100%;				/*幅*/
+	margin: 2rem auto;
+}
+
+.ta-exam, .ta-exam td, .ta-exam th {
+	border: 1px solid var(--primary-color);	/*テーブルの枠線の幅、線種、varは色のことでcss冒頭で指定しているprimary-colorを読み込みます。*/
+	padding: 0.5rem;			/*ボックス内の余白*/
+	word-break: break-all;	/*英語などのテキストを改行で自動的に折り返す設定。これがないと、テーブルを突き抜けて表示される場合があります。*/
+	text-align: center;
+	vertical-align: middle;
+}
+
+/*thの設定　左から右へ*/
+.ta-exam th:nth-child(1) { width: 5%; }
+.ta-exam th:nth-child(2) { width: 10%; }
+.ta-exam th:nth-child(3) { width: 25%; }
+.ta-exam th:nth-child(4) { width: 20%; }
+.ta-exam th:nth-child(5) { width: 20%; }
+.ta-exam th:nth-child(6) { width: 20%; }
+
+/*tdの設定*/
+.ta-exam td:nth-child(1) {		/*チェックボックス*/
+	text-align: center;
+	vertical-align: middle;
+}
+
+
+/*申請状況テーブル（ta-app）
+---------------------------------------------------------------------------*/
+/*ta-appテーブルブロック設定*/
+.ta-app {
+	table-layout: fixed;
+	width: 90%;				/*幅*/
+	margin: 1rem left;
+}
+
+.ta-app, .ta-app td, .ta-app th {
+	border: 1px solid var(--primary-color);	/*テーブルの枠線の幅、線種、varは色のことでcss冒頭で指定しているprimary-colorを読み込みます。*/
+	padding: 0.5rem;			/*ボックス内の余白*/
+	word-break: break-all;	/*英語などのテキストを改行で自動的に折り返す設定。これがないと、テーブルを突き抜けて表示される場合があります。*/
+	text-align: center;
+	vertical-align: middle;
+}
+
+/*thの設定　左から右へ*/
+.ta-app th:nth-child(1) { width: 15%; }
+.ta-app th:nth-child(2) { width: 25%; }
+.ta-app th:nth-child(3) { width: 15%; }
+.ta-app th:nth-child(4) { width: 25%; }
+.ta-app th:nth-child(5) { width: 20%; }
+
+/*tdの設定*/
+.ta-app td:nth-child(1) {		/*チェックボックス*/
+	text-align: center;
+	vertical-align: middle;
+}
+
+
+/*申請内容詳細テーブル（ta-detail）
+---------------------------------------------------------------------------*/
+/*ta-detailテーブルブロック設定*/
+.ta-detail {
+	table-layout: fixed;
+	width: 100%;				/*幅*/
+	margin: 0 auto;
+}
+
+.ta-detail, .ta-detail td, .ta-detail th {
+	border: 1px solid var(--primary-color);
+	padding: 0.5rem 1rem;
+	vertical-align: middle;
+	white-space: normal;
+	overflow-wrap: break-word;
+	word-break: break-word;
+}
+
+/* thの設定 */
+.ta-detail th { 
+	width: 30%;
+	text-align: center;
+}
+
+/* tdの設定 */
+.ta-detail td {
+	width: 70%;
+	padding-left: 1rem;
+	line-height: 1.2;
+}
+
+.preformatted {
+	white-space: pre-wrap;      /* 改行を保持しつつ折り返す */
+	word-break: break-word;
+	overflow-wrap: break-word;
+}
+
+
+/*管理者情報テーブル（ta-admin）
+---------------------------------------------------------------------------*/
+/*ta-adminテーブルブロック設定*/
+.ta-admin {
+	table-layout: fixed;
+	width: 400px;				/*幅*/
+	margin: 2rem left;
+	margin-bottom: 1rem;
+}
+
+.ta-admin, .ta-admin td, .ta-admin th {
+	border: 1px solid var(--primary-color);	/*テーブルの枠線の幅、線種、varは色のことでcss冒頭で指定しているprimary-colorを読み込みます。*/
+	padding: 0.5rem;			/*ボックス内の余白*/
+	word-break: break-all;	/*英語などのテキストを改行で自動的に折り返す設定。これがないと、テーブルを突き抜けて表示される場合があります。*/
+	text-align: center;
+	vertical-align: middle;
+}
+
+/*thの設定　左から右へ*/
+.ta-admin th:nth-child(1) { width: 20%; }
+.ta-admin th:nth-child(2) { width: 30%; }
+.ta-admin th:nth-child(3) { width: 50%; }
+
+
+/*管理者追加テーブル（ta-addadmin）
+---------------------------------------------------------------------------*/
+/*ta-addadminテーブルブロック設定*/
+.ta-addadmin {
+	table-layout: fixed;
+	width: 400px;				/*幅*/
+	margin: 2rem left;
+	margin-bottom: 1rem;
+}
+
+.ta-addadmin, .ta-addadmin td, .ta-addadmin th {
+	border: 1px solid var(--primary-color);	/*テーブルの枠線の幅、線種、varは色のことでcss冒頭で指定しているprimary-colorを読み込みます。*/
+	padding: 0.5rem;			/*ボックス内の余白*/
+	height: 1.5rem;
+	word-break: break-all;	/*英語などのテキストを改行で自動的に折り返す設定。これがないと、テーブルを突き抜けて表示される場合があります。*/
+	text-align: center;
+	vertical-align: middle;
+}
+
+.ta-addadmin th {
+	width: 30%;
+}
+
+.ta-addadmin td {
+	width: 70%;
+}
+
+
+
+/*PAGE TOP（↑）設定
+---------------------------------------------------------------------------*/
+.pagetop-show {display: block;}
+
+/*ボタンの設定*/
+.pagetop a {
+	display: block;text-decoration: none;text-align: center;z-index: 99;
+	position: fixed;	/*スクロールに追従しない(固定で表示)為の設定*/
+	right: 20px;		/*右からの配置場所指定*/
+	bottom: 20px;		/*下からの配置場所指定*/
+	color: #fff;		/*文字色*/
+	background: rgba(0,0,0,0.2);	/*背景色。0,0,0は黒の事で0.2は色が20%出た状態。*/
+	width: 60px;		/*幅*/
+	line-height: 60px;	/*高さ*/
+}
+
+
+/*その他
+---------------------------------------------------------------------------*/
+.clearfix::after {content: "";display: block;clear: both;}
+.color-check, .color-check a {color: red !important;}
+.l {text-align: left !important;}
+.c {text-align: center !important;}
+.r {text-align: right !important;}
+.ws {width: 95%;display: block;}
+.wl {width: 95%;display: block;}
+.mb0 {margin-bottom: 0px !important;}
+.mb30 {margin-bottom: 30px !important;}
+.mb5vw {margin-bottom: 5vw !important;}
+.look {
+	border: none; 
+	margin-top: 1rem; 
+	margin-bottom: 2rem;
+	font-size: 16px;
+}
+.small {font-size: 0.75em;}
+.large {font-size: 2em; letter-spacing: 0.1em;}
+.pc {display: none;}
+.dn {display: none !important;}
+.block {display: block !important;}
+
+	/*画面幅900px以上の追加指定*/
+	@media screen and (min-width:900px) {
+
+	.ws {width: 48%;display: inline;}
+	.sh {display: none;}
+	.pc {display: block;}
+
+	}/*追加指定ここまで*/
+
+
+
+
+/* -------------------------------------------------------------------
+	ここから追加
+------------------------------------------------------------------- */
+/*ボタン*/
+.btn {
+	display: inline-block;
+	text-decoration: none;
+	border: none;
+	color: #fff;			/*文字色*/
+	padding: 5px 20px;		/*上下、左右へのボタン内の余白*/
+	box-shadow: 2px 2px 5px rgba(0,0,0,0.2);	/*ボックスの影。右へ、下へ、ぼかし幅の順。0,0,0は黒の事で0.2は色が20%出た状態。*/
+	background: linear-gradient(to bottom, #333, #4c4c4c);/*背景グラデーション*/
+	font-size: 0.9rem;	/*文字サイズ。remの単位についてはテンプレート内の解説をお読み下さい。*/
+}
+
+/*ボタンのマウスオン時*/
+.btn:hover {
+	filter: brightness(1.2);	/*少しだけ明るくする*/
+	cursor: pointer;
+}
+
+/*listブロック内でのボタン*/
+.list .btn a, .list .btn input {
+	margin-top: 10px;	/*上にスペースを空ける*/
+	display: block;		/*横幅いっぱいに広げる*/
+}
+
+
+/* 大きい画面（メニューが左にあるとき）はラベルと入力欄を左揃え */
+@media screen and (min-width: 900px) {
+  #studentContent,
+  #adminContent {
+    margin: 0;      /* 左寄せ */
+    width: 60%;     /* 幅はそのまま or 調整 */
+  }
+}
+
+/* ボタンを中央に寄せる */
+.form-action {
+  text-align: center;   /* 中のインライン要素を中央揃え */
+  margin-top: 5px;     /* お好みで上下の余白調整 */
+}
+
+/* .action-item を横並び＆中央揃え */
+.action-item {
+  display: flex;
+  align-items: left;
+  margin-bottom: 1rem; /* 行間の余白 */
+}
+
+/* ボタンとテキストの間にスペース */
+.action-text {
+  margin-left: 1rem;
+}
+
+
+.form-group {
+  display: grid;
+  grid-template-columns: 140px 1fr; /* 左列：ラベル分の固定幅、右列：入力欄 */
+  align-items: center;              /* ラベルと入力欄を縦方向に中央揃え */
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  padding-right: 1ch;
+  text-align: right;
+  white-space: nowrap;   /* 折り返し禁止*/
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 250px;          /* お好みの横幅に */
+  height: 1.5rem; 
+  padding: 0.5em;
+  box-sizing: border-box;
+}
+
+/* 無効リンクの見た目 */
+a.disabled {
+  color: #999;            /* 薄いグレーに */
+  pointer-events: none;   /* クリックを無効化 */
+  cursor: default;        /* カーソルも通常の矢印に */
+  text-decoration: none;  /* 下線も消す */
+}
+
+/* 試験情報リストの dt, dd をインライン表示に */
+dl.exam-info-list {
+  display: grid;
+  grid-template-columns: auto 1fr;  /* 左：ラベル、右：値 */
+  gap: 0.5em 1em;                    /* 行間 0.5em、列間 1em */
+  align-items: baseline;             /* ラベルと値をベースライン揃え */
+}
+
+/*箇条書きの点を■に変更*/
+ul.look {
+  list-style-type: square;   /* 『■』四角 */
+}
+
+/* -------------------------------------------------------------------
+	ログイン・ログアウトページ用(サイドメニュー非表示)
+------------------------------------------------------------------- */
+body.no-sidemenu #menubar {
+  display: none !important;
+}
+
+/* ログインフォーム＆ボタンを中央寄せ */
+body.no-sidemenu {
+  /* 全体の余白リセット＆中央寄せになるように */
+  text-align: center;
+}
+
+body.no-sidemenu #studentContent,
+body.no-sidemenu #adminContent {
+  /* フォーム全体の幅を制限して中央に */
+  width: 80%;
+  max-width: 400px;
+  margin: 1rem auto;
+  text-align: left; /* ラベルは左揃え */
+}
+
+/* ボタン群は改めて中央揃え */
+body.no-sidemenu .form-action {
+  text-align: center;
+}
+
+body.no-sidemenu #contents {
+  position: static !important;  /* 画面下への固定を解除 */
+  float: none !important;
+  width: auto !important;     /* フル幅 */
+  margin: 0 auto !important;   /* 中央寄せ */
+  margin-bottom: 5rem;  /* フッターの高さ＋α分だけスペースを確保 */
+}
+
+/* フッターも左マージンをなくして中央orフル幅に */
+body.no-sidemenu footer {
+  margin-left: 0 !important;
+  clear: both !important;
+  width: auto !important;
+  text-align: center;          /* 中央寄せにしたいなら */
+}
+
+/* -------------------------------------------------------------------
+	申請状況⇔詳細確認ページ
+------------------------------------------------------------------- */
+/* オーバーレイ */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+  display: none;
+}
+
+/* モーダル本体 */
+.modal {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 0rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  z-index: 1001;
+  width: 80%;			/*横幅*/
+  max-width: 600px;		/*最大横幅*/
+  max-height: 80%;		/*最大高さ*/
+  overflow-y: auto;		
+  display: none;
+}
+
+.modal-content {
+  max-height: 70vh;
+  overflow-y: auto;
+}

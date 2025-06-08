@@ -1,0 +1,19 @@
+<!-- 申請内容詳細（フラグメント） -->
+<div th:fragment="detail">
+  <!-- モーダル内ヘッダー -->
+  <div class="modal-header">
+    <h3>申請内容</h3>
+  </div>
+  <!-- 詳細情報テーブル -->
+  <table class="ta-detail">
+    <tr><th>編成</th><td th:text="${appDetail.perfForm}"></td></tr>
+    <tr><th>作曲者</th><td th:text="${appDetail.composer}"></td></tr>
+    <tr><th>生没年</th><td th:text="${appDetail.years}"></td></tr>
+    <tr><th>作品名</th><td th:text="${appDetail.title}"></td></tr>
+    <tr><th>楽章</th><td><div th:text="${appDetail.movement}" class="preformatted"></div></td></tr>
+    <tr><th>演奏時間</th><td th:text="${appDetail.duration}"></td></tr>
+    <tr><th>共演者</th><td><div th:text="${appDetail.member}" class="preformatted"></div></td></tr>
+    <tr><th>使用備品</th><td><div th:text="${appDetail.equipment}" class="preformatted"></div></td></tr>
+    <tr><th>備考</th><td><div th:text="${appDetail.memo}" class="preformatted"></div></td></tr>
+  </table>
+</div>

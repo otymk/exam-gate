@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>試験申請フォーム</title>
+  <!-- 共通スタイルを適用 (stylewhite.css) -->
+  <link rel="stylesheet" th:href="@{/css/stylewhite.css}" />
+</head>
+<body class="">
+<div id="container">
+  <!-- ヘッダー -->
+  <header>
+      <h1 id="logo">Sample Company</h1>
+      <address>TEL:098-000-000</address>
+  </header>
+
+  <!-- メインイメージ -->
+  <aside id="mainimg">
+    <img th:src="@{/images/1.jpg}" alt="メインイメージ" style="width:100%; height:30vh;" />
+  </aside>
+
+  <!-- コンテンツ（メイン + サイドメニュー） -->
+  <div id="contents">
+    <!-- メイン -->
+    <main>
+      <section>
+        <h2>試験申請</h2>
+        <dl class="exam-info-list" th:if="${selectedExam != null}">
+          <dt>試験名:</dt><dd th:text="${selectedExam.examName}"></dd>
+          <dt>学籍番号:</dt><dd th:text="${loginStudent.studentId}"></dd>
+          <dt>氏名:</dt><dd th:text="${loginStudent.name}"></dd>
+          <dt>学年:</dt><dd th:text="${loginStudent.grade}"></dd>
+          <dt>楽器:</dt><dd th:text="${loginStudent.instrument}"></dd>
+        </dl>
+      </section>
+
+      <section>
+        <h3>入力フォーム</h3>
+        <p>※は入力必須項目です</p>
+        <form th:action="@{/student/apply/confirm}" th:object="${applicationForm}" method="post" enctype="multipart/form-data">
+          <table class="ta1">
+            <tr><th>編成<span style="color:red">※</span></th><td><input type="text" th:field="*{perfForm}" placeholder="例: 無伴奏、ソロなど" required minlength="2" /></td></tr>
+            <tr><th>作曲者<span style="color:red">※</span></th><td><input type="text" th:field="*{composer}" required minlength="2" /></td></tr>
+            <tr><th>作曲者生没年<span style="color:red">※</span></th><td><input type="text" th:field="*{years}" placeholder="例: 18xx～19xx" required minlength="4" maxlength="10" /></td></tr>
+            <tr><th>作品名<span style="color:red">※</span></th><td><input type="text" th:field="*{title}" required minlength="2" /></td></tr>
+            <tr><th>楽章</th><td><textarea th:field="*{movement}" placeholder="※記載がなければ空欄"></textarea></td></tr>
+            <tr><th>演奏時間<span style="color:red">※</span></th><td><input type="text" th:field="*{duration}" placeholder="実際の演奏時間を計測してください" required minlength="2" /></td></tr>
+            <tr><th>共演者</th><td><textarea th:field="*{member}" placeholder="例: 芸大太郎(3年)、ピアノ"></textarea></td></tr>
+            <tr><th>使用備品</th><td><textarea th:field="*{equipment}" placeholder="例: ピアノ、譜面台"></textarea></td></tr>
+            <tr><th>備考</th><td><textarea th:field="*{memo}"></textarea></td></tr>
+          </table>
+
+          <div class="form-action">
+            <button class="btn" type="submit">確認</button>
+            <button class="btn" type="button" th:onclick="|location.href='@{/student/selectExam}'|">戻る</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <!-- サイドメニュー -->
+    <div id="menubar">
+      <h3>MENU</h3>
+      <nav>
+        <ul>
+          <li><a th:href="@{/student/studentMenu}">ホーム</a></li>
+          <li><a th:href="@{/student/selectExam}">試験一覧</a></li>
+          <li><a th:href="@{/student/myPage}">マイページ</a></li>
+          <li><a th:href="@{/logout}">ログアウト</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <footer>
+    <small>&copy; <a th:href="@{/}">SAMPLE COMPANY</a> All Rights Reserved.</small>
+    <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+  </footer>
+</div>
+
+<!-- ページトップボタン -->
+<div class="pagetop"><a href="#">▲</a></div>
+
+<!-- ハンバーガーメニューアイコン -->
+<div id="menubar_hdr"><div class="menu-icon"><span></span><span></span><span></span></div></div>
+
+<!-- JS 読み込み -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

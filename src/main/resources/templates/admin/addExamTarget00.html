@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>試験対象者登録</title>
+</head>
+<body>
+    <h3>試験の対象者を登録する</h3>
+    <h4 th:text="${examInfo.examName}"></h4>
+    <p>登録する学生を選択してください。</p>
+
+    <form th:action="@{/admin/addExamTarget}" method="post" th:object="${form}"> 
+    <!--処理後メッセージ-->
+    <div th:if="${successMessage}" style="color: green;" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" style="color: red;" th:text="${errorMessage}"></div>
+    <p th:if="${#fields.hasErrors('*{studentIds}')}" th:errors="*{studentIds}" style="color:red"></p>
+           
+        <section>        
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>選択</th>
+                        <th>学生番号</th>
+                        <th>氏名</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="student : ${nyStudents}">
+                        <td>
+                            <input type="checkbox" th:field="*{studentIds}" th:value="${student.studentId}">
+                        </td>
+                        <td th:text="${student.studentId}"></td>
+                        <td th:text="${student.name}"></td>
+                    </tr>
+                </tbody>
+            </table>       
+        </section>
+        <section>
+            <button type="submit" name="action" value="add" 
+                    onclick="return confirm('登録しますか？')">登録</button>
+            <button type="submit" name="action" value="back">戻る</button>
+        </section>
+    </form>
+
+</body>
+</html>

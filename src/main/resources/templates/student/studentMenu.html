@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>メニュー</title>
+    <!-- Template-Party white テーマの共通スタイルを適用 -->
+    <link rel="stylesheet" th:href="@{/css/stylewhite.css}" />
+</head>
+<body>
+    <div id="container">
+        <!-- ヘッダー -->
+        <header>
+            <h1 id="logo">Sample Company</h1>
+            <address>TEL:098-000-000</address>
+        </header>
+
+        <!-- メインイメージ -->
+        <aside id="mainimg">
+            <img th:src="@{/images/1.jpg}" alt="メインイメージ" style="width:100%; height:30vh;" />
+        </aside>
+
+        <!-- コンテンツ + サイドメニュー -->
+        <div id="contents">
+            <main>
+                <section>                
+                    <h3>試験一覧</h3>
+                    <ul class="look">
+                        <li>未申請の試験が表示されます。</li>
+                        <li>１つの試験に対して１回のみ申請が可能です。</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>マイページ</h3>
+                    <ul class="look">
+                        <li>登録されている情報を確認できます。</li>
+                        <li>申請済みの試験と、申請内容を確認できます。</li>
+                    </ul>                 
+                </section>
+            </main>
+
+            <!-- サイドメニュー -->
+            <div id="menubar">
+                <h3>MENU</h3>
+                <nav>
+                    <ul>
+                        <li><a th:href="@{/student/selectExam}">試験一覧</a></li>
+                        <li><a th:href="@{/student/myPage}">マイページ</a></li>
+                        <li><a th:href="@{/logout}">ログアウト</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div><!--#contents-->
+
+        <!-- フッター -->
+        <footer>
+            <small>&copy; <a th:href="@{/}">SAMPLE COMPANY</a> All Rights Reserved.</small>
+            <span class="pr">
+                <a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a>
+            </span>
+        </footer>
+    </div><!--#container-->
+
+    <!-- ページトップボタン -->
+    <div class="pagetop"><a href="#">▲</a></div>
+
+    <!-- ハンバーガーメニューアイコン -->
+    <div id="menubar_hdr">
+        <div class="menu-icon"><span></span><span></span><span></span></div>
+    </div>
+
+    <!-- JS読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>未申請の試験一覧</title>
+    <!-- Template-Party 標準スタイルを適用 -->
+    <link rel="stylesheet" th:href="@{/css/stylewhite.css}" />
+</head>
+<body>
+    <div id="container">
+        <!-- ヘッダー -->
+        <header>
+            <h1 id="logo">Sample Company</h1>
+            <address>TEL:098-000-000</address>
+        </header>
+
+        <!-- メインイメージ（必要に応じて差し替え） -->
+        <aside id="mainimg">
+            <img th:src="@{/images/1.jpg}" alt="メインイメージ" style="width:100%; height:30vh;" />
+        </aside>
+
+        <!-- コンテンツブロック（メイン + サイドメニュー） -->
+        <div id="contents">
+            <!-- メイン -->
+            <main>
+                <section>
+                    <h2>未申請の試験一覧</h2>
+                    <!-- 試験がない場合 -->
+                    <p th:if="${#lists.isEmpty(examInfo)}">対象の試験はありません。</p>
+                    <!-- 試験一覧 -->
+                    
+                    <p th:if="${!#lists.isEmpty(examInfo)}" style="color: red;">申請は１回のみ可能です。</p>
+                    <ul class="look">                    
+                        <li th:each="exam : ${examInfo}">
+                            <a th:href="@{/student/apply/form(examId=${exam.examId})}" th:text="${exam.examName}"></a>
+                        </li>
+                    </ul>
+                </section>
+            </main>
+
+            <!-- サイドメニュー -->
+            <div id="menubar">
+                <h3>MENU</h3>
+                <nav>
+                    <ul>
+                        <li><a th:href="@{/student/studentMenu}">ホーム</a></li>
+                        <li><a th:href="@{/student/myPage}">マイページ</a></li>
+                        <li><a th:href="@{/logout}">ログアウト</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- フッター消さない！ -->
+        <footer>
+            <small>Copyright&copy; <a th:href="@{/}">Sample Company</a> All Rights Reserved.</small>
+            <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+        </footer>
+    </div>
+
+    <!-- ページトップボタン -->
+    <div class="pagetop"><a href="#">▲</a></div>
+
+    <!-- ハンバーガーメニューアイコン -->
+    <div id="menubar_hdr">
+        <div class="menu-icon"><span></span><span></span><span></span></div>
+    </div>
+
+    <!-- jQuery とメインスクリプト -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+
+</body>
+</html>

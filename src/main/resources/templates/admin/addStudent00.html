@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生情報追加</title>
+</head>
+<body>
+    <h3>学生を追加する</h3>
+    <p>登録する学生情報を入力してください</p>
+
+    <form th:action="@{/admin/addStudent}" method="post" th:object="${studentDto}">
+
+    <div th:if="${successMessage}" style="color: green;" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" style="color: red;" th:text="${errorMessage}"></div>
+    
+    <div th:if="${#fields.hasErrors('*{studentId}')}" style="color: red;" th:errors="*{studentId}"></div>
+    <div th:if="${#fields.hasErrors('*{name*}')}" style="color: red;" th:errors="*{name}"></div>
+    <div th:if="${#fields.hasErrors('*{grade}')}" style="color: red;" th:errors="*{grade}"></div>
+    <div th:if="${#fields.hasErrors('*{instrument}')}" style="color: red;" th:errors="*{instrument}"></div>
+    <div th:if="${#fields.hasErrors('*{mail}')}" style="color: red;" th:errors="*{mail}"></div>
+    
+        学生番号 <input type="text" th:field="*{studentId}"><br>
+        氏名 <input type="text" th:field="*{name}"><br>       
+        学年 <input type="text" th:field="*{grade}"><br>        
+        楽器 <input type="text" th:field="*{instrument}"><br>       
+        メールアドレス <input type="text" th:field="*{mail}"><br>
+        
+        <button type="submit" name="action" value="add" 
+                onclick="return confirm('登録しますか？')">登録</button>
+        <button type="submit" name="action" value="back">戻る</button>
+    </form>
+
+</body>
+</html>

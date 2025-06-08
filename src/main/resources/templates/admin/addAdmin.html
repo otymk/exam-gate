@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>管理者追加</title>
+  <!-- 共通スタイルを適用 (stylewhite.css) -->
+  <link rel="stylesheet" th:href="@{/css/stylewhite.css}" />
+</head>
+<body>
+    <div id="container">
+        <!-- ヘッダー -->
+        <header>
+            <h1 id="logo">Sample Company</h1>
+            <address>TEL:098-000-000</address>
+        </header>
+
+        <!-- メインイメージ -->
+        <aside id="mainimg">
+            <img th:src="@{/images/1.jpg}" alt="メインイメージ" style="width:100%; height:30vh;" />
+        </aside>
+
+        <!-- コンテンツ + サイドメニュー -->
+        <div id="contents">
+            <main>
+                <section>
+                    <h2>管理者登録</h2>
+                    <p>管理者情報を入力してください。</p>
+
+                    <form th:action="@{/admin/addAdmin}" method="post" th:object="${adminDto}">
+                    
+                        <!-- メッセージ表示 -->
+                        <div th:if="${successMessage}" style="color: green; margin-bottom:1rem;" th:text="${successMessage}"></div>
+                        <div th:if="${errorMessage}" style="color: red; margin-bottom:1rem;" th:text="${errorMessage}"></div>
+
+                        <!-- 入力エラー表示 -->
+                        <div th:if="${#fields.hasErrors('adminId')}" style="color: red; margin-bottom:0.5rem;" th:errors="*{adminId}"></div>
+                        <div th:if="${#fields.hasErrors('adminName')}" style="color: red; margin-bottom:0.5rem;" th:errors="*{adminName}"></div>
+                        <div th:if="${#fields.hasErrors('pass')}" style="color: red; margin-bottom:0.5rem;" th:errors="*{pass}"></div>
+
+                        <table class="ta-addadmin">
+                            <tr><th>管理者ID</th><td><input type="text" th:field="*{adminId}" /></td></tr>
+                            <tr><th>氏名</th><td><input type="text" th:field="*{adminName}" /></td></tr>
+                            <tr><th>パスワード</th><td><input type="password" th:field="*{pass}" /></td></tr>
+                        </table>
+
+                        <div class="form-action" style="text-align: left;">
+                            <button class="btn" type="submit" name="action" value="add" onclick="return confirm('登録しますか？')">登録</button>
+                            <button class="btn" type="submit" name="action" value="back">戻る</button>
+                        </div>
+                    </form>
+                </section>
+            </main>
+
+            <!-- サイドメニュー -->
+            <div id="menubar">
+                <h3>MENU</h3>
+                <nav>
+                    <ul>
+                    <li><a th:href="@{/admin/adminList}">管理者一覧</a></li>
+                    <li><a th:href="@{/logout}">ログアウト</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div> <!-- /#contents -->
+
+        <!-- フッター -->
+        <footer>
+            <small>&copy; <a th:href="@{/}">SAMPLE COMPANY</a> All Rights Reserved.</small>
+            <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+        </footer>
+    </div> <!-- /#container -->
+
+    <!-- ページトップボタン -->
+    <div class="pagetop"><a href="#">▲</a></div>
+
+    <!-- ハンバーガーメニューアイコン -->
+    <div id="menubar_hdr"><div class="menu-icon"><span></span><span></span><span></span></div></div>
+
+    <!-- JS読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

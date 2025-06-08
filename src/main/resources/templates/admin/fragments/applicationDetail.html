@@ -1,0 +1,23 @@
+<!-- 申請内容詳細（フラグメント） -->
+<div th:fragment="detail">
+  <!-- モーダル内ヘッダー -->
+  <div class="modal-header">
+    <h3 th:text="${applicationDto.name} + ' さんの申請内容'"></h3>
+  </div>
+  <!-- 詳細情報テーブル -->
+  <table class="ta-detail">
+    <tr><th>学生番号</th><td th:text="${applicationDto.studentId}"></td></tr>
+    <tr><th>氏名</th><td th:text="${applicationDto.name}"></td></tr>
+    <tr><th>学年</th><td th:text="${applicationDto.grade}"></td></tr>
+    <tr><th>楽器</th><td th:text="${applicationDto.instrument}"></td></tr>
+    <tr><th>編成</th><td th:text="${applicationDto.perfForm}"></td></tr>
+    <tr><th>作曲者</th><td th:text="${applicationDto.composer}"></td></tr>
+    <tr><th>生没年</th><td th:text="${applicationDto.years}"></td></tr>
+    <tr><th>作品名</th><td th:text="${applicationDto.title}"></td></tr>
+    <tr><th>楽章</th><td><div th:text="${applicationDto.movement}" class="preformatted"></div></td></tr>
+    <tr><th>演奏時間</th><td th:text="${applicationDto.duration}"></td></tr>
+    <tr><th>共演者</th><td><div th:text="${applicationDto.member}" class="preformatted"></div></td></tr>
+    <tr><th>使用備品</th><td><div th:text="${applicationDto.equipment}" class="preformatted"></div></td></tr>
+    <tr><th>備考</th><td><div th:text="${applicationDto.memo}" class="preformatted"></div></td></tr>
+  </table>
+</div>

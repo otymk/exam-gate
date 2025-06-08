@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>試験追加</title>
+</head>
+<body>
+    <h3>試験を追加する</h3>
+    <p>登録する試験情報を入力してください</p>
+
+    <div th:if="${successMessage}" style="color: green;" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" style="color: red;" th:text="${errorMessage}"></div>
+
+    <form th:action="@{/admin/addExam}" method="post" th:object="${examDto}">
+        試験ID <input type="text" th:field="*{examId}"><br>
+        <div th:if="${#fields.hasErrors('examId')}" th:errors="*{examId}"></div>
+
+        試験名 <input type="text" th:field="*{examName}"><br>
+        <div th:if="${#fields.hasErrors('examName')}" th:errors="*{examName}"></div>
+
+        試験日 <input type="date" th:field="*{examDate}"><br>
+        <div th:if="${#fields.hasErrors('examDate')}" th:errors="*{examDate}"></div>
+
+        編成 <input type="text" th:field="*{perfForm}"><br>
+        <div th:if="${#fields.hasErrors('perfForm')}" th:errors="*{perfForm}"></div>
+
+        申請期限 <input type="date" th:field="*{applicationDeadline}"><br>
+        <div th:if="${#fields.hasErrors('applicationDeadline')}" th:errors="*{applicationDeadline}"></div>
+
+        <button type="submit" name="action" value="add" 
+                onclick="return confirm('登録しますか？')">登録</button>
+        <button type="submit" name="action" value="back">戻る</button>
+    </form>
+
+</body>
+</html>

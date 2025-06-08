@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>申請内容確認</title>
+  <!-- Template-Party white テーマを適用 -->
+  <link rel="stylesheet" th:href="@{/css/stylewhite.css}" />
+</head>
+<body>
+<div id="container">
+  <!-- ヘッダー -->
+    <header>
+        <h1 id="logo">Sample Company</h1>
+        <address>TEL:098-000-000</address>
+    </header>
+
+  <!-- メインイメージ -->
+  <aside id="mainimg">
+    <img th:src="@{/images/1.jpg}" alt="メインイメージ" style="width:100%; height:30vh;" />
+  </aside>
+
+  <!-- コンテンツ（メイン + サイドメニュー） -->
+  <div id="contents">
+    <!-- メイン部 -->
+    <main>
+      <section>
+        <h2>申請内容確認</h2>
+        <h4>以下の内容で申請します。</h4>
+
+        <table class="ta1">
+          <tr><th>試験名:</th><td th:text="${selectedExam.examName}"></td></tr>
+          <tr><th>学生番号:</th><td th:text="${loginStudent.studentId}"></td></tr>
+          <tr><th>氏名:</th><td th:text="${loginStudent.name}"></td></tr>
+          <tr><th>学年:</th><td th:text="${loginStudent.grade}"></td></tr>
+          <tr><th>楽器:</th><td th:text="${loginStudent.instrument}"></td></tr>
+          <tr><th>編成:</th><td th:text="${applicationForm.perfForm}"></td></tr>
+          <tr><th>作曲者:</th><td th:text="${applicationForm.composer}"></td></tr>
+          <tr><th>生没年:</th><td th:text="${applicationForm.years}"></td></tr>
+          <tr><th>作品名:</th><td th:text="${applicationForm.title}"></td></tr>
+          <tr><th>楽章:</th><td><pre th:text="${applicationForm.movement}"></pre></td></tr>
+          <tr><th>演奏時間:</th><td th:text="${applicationForm.duration}"></td></tr>
+          <tr><th>共演者:</th><td><pre th:text="${applicationForm.member}"></pre></td></tr>
+          <tr><th>使用備品:</th><td><pre th:text="${applicationForm.equipment}"></pre></td></tr>
+          <tr><th>備考:</th><td><pre th:text="${applicationForm.memo}"></pre></td></tr>
+        </table>
+
+        <!-- ボタン（申請・修正） -->
+        <div class="form-action">
+          <form th:action="@{/student/apply/doApply}" method="post" style="display:inline-block; margin:0 5px;">
+            <button class="btn" type="submit">申請する</button>
+          </form>
+          <a th:href="@{/student/apply/form(examId=${selectedExam.examId})}" class="btn">修正する</a>
+          <!--
+          <form th:action="@{/student/apply/form(examId=${selectedExam.examId})}" method="get" style="display:inline-block; margin:0 5px;">
+            <button class="btn" type="submit">修正する</button>
+          </form>
+          -->
+        </div>
+      </section>
+    </main>
+
+    <!-- サイドメニュー -->
+    <div id="menubar">
+      <h3>MENU</h3>
+      <nav>
+        <ul>
+          <li><a th:href="@{/student/studentMenu}">ホーム</a></li>
+          <li><a th:href="@{/student/selectExam}">試験一覧</a></li>
+          <li><a th:href="@{/student/myPage}">マイページ</a></li>
+          <li><a th:href="@{/logout}">ログアウト</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div> <!-- /#contents -->
+
+  <!-- フッター -->
+  <footer>
+    <small>&copy; <a th:href="@{/}">SAMPLE COMPANY</a> All Rights Reserved.</small>
+    <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+  </footer>
+</div> <!-- /#container -->
+
+<!-- ページトップボタン -->
+<div class="pagetop"><a href="#">▲</a></div>
+
+<!-- ハンバーガーメニューアイコン -->
+<div id="menubar_hdr">
+  <div class="menu-icon"><span></span><span></span><span></span></div>
+</div>
+
+<!-- JS読み込み -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>
