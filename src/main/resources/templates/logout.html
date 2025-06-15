@@ -6,13 +6,11 @@
   <title>ログアウト</title>
   <link rel="stylesheet" th:href="@{/css/stylewhite.css}" />
 </head>
+
 <body class="no-sidemenu">
   <div id="container">
     <!-- ヘッダー -->
-      <header>
-          <h1 id="logo">Sample Company</h1>
-          <address>TEL:098-000-000</address>
-      </header>
+    <div th:replace="fragments/common :: header"></div>
 
     <!-- メインイメージが不要なので省略 -->
 
@@ -30,10 +28,8 @@
     </div>
 
     <!-- フッター -->
-    <footer>
-      <small>&copy; <a th:href="@{/}">SAMPLE COMPANY</a> All Rights Reserved.</small>
-      <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
-    </footer>
+    <div th:replace="fragments/common :: footer"></div>
+  
   </div> <!-- /#container -->
 
   <!-- ページトップボタン -->

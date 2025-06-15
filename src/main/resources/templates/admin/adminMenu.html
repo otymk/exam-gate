@@ -8,91 +8,82 @@
     <link rel="stylesheet" th:href="@{/css/stylewhite.css}" />
 </head>
 <body>
-<div id="container">
-    <!-- ヘッダー -->
-    <header>
-        <h1 id="logo">Sample Company</h1>
-        <address>TEL:098-000-000</address>
-    </header>
+    <div id="container">
+        <!-- ヘッダー -->
+        <div th:replace="fragments/common :: header"></div>
 
-    <!-- メインイメージ -->
-    <aside id="mainimg">
-        <img th:src="@{/images/1.jpg}" alt="メインイメージ" style="width:100%; height:30vh;" />
-    </aside>
+        <!-- メインイメージ -->
+        <div th:replace="fragments/common :: mainimg"></div>
 
-    <!-- コンテンツ + サイドメニュー -->
-    <div id="contents">
-        <!-- メイン（管理者メニュー） -->
-        <main>
-            
-            <section>                
-                <h3>学生情報</h3>
-                <ul class="look">
-                    <li>学生を登録する。</li>
-                    <li>学生の情報を確認・編集する。</li>
-                </ul>
-            </section>
-            <section>
-                <h3>試験情報</h3>
-                <ul class="look">
-                    <li>試験を登録する。</li>
-                    <li>試験の情報を確認・編集する。</li>
-                    <li>試験の対象者を登録する。</li>
-                    <li>各試験の申請状況・申請内容を確認する。</li>
-                </ul>                 
-            </section>
-            <section>                
-                <h3>管理者情報</h3>
-                <ul class="look">
-                    <li>管理者を登録する。</li>
-                    <li>管理者の情報を確認・編集する。</li>
-                </ul>
-            </section> 
-                <!--
-                <nav>
+        <!-- コンテンツ + サイドメニュー -->
+        <div id="contents">
+            <!-- メイン（管理者メニュー） -->
+            <main>
+                
+                <section>                
+                    <h3>学生情報</h3>
                     <ul class="look">
-                        <li><a th:href="@{/admin/studentList}">≪学生情報≫</a></li>
-                        <li><a th:href="@{/admin/examList}">≪試験情報≫</a></li>
-                        <li><a th:href="@{/admin/adminList}">≪管理者情報≫</a></li>
+                        <li>学生を登録する。</li>
+                        <li>学生の情報を確認・編集する。</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>試験情報</h3>
+                    <ul class="look">
+                        <li>試験を登録する。</li>
+                        <li>試験の情報を確認・編集する。</li>
+                        <li>試験の対象者を登録する。</li>
+                        <li>各試験の申請状況・申請内容を確認する。</li>
+                    </ul>                 
+                </section>
+                <section>                
+                    <h3>管理者情報</h3>
+                    <ul class="look">
+                        <li>管理者を登録する。</li>
+                        <li>管理者の情報を確認・編集する。</li>
+                    </ul>
+                </section> 
+                    <!--
+                    <nav>
+                        <ul class="look">
+                            <li><a th:href="@{/admin/studentList}">≪学生情報≫</a></li>
+                            <li><a th:href="@{/admin/examList}">≪試験情報≫</a></li>
+                            <li><a th:href="@{/admin/adminList}">≪管理者情報≫</a></li>
+                        </ul>
+                    </nav>
+                    -->
+                </section>
+            </main>
+
+            <!-- サイドメニュー -->
+            <div id="menubar">
+                <h3>MENU</h3>
+                <nav>
+                    <ul>
+                        <li><a th:href="@{/admin/studentList}">学生情報</a></li>
+                        <li><a th:href="@{/admin/examList}">試験情報</a></li>
+                        <li><a th:href="@{/admin/adminList}">管理者情報</a></li>                    
+                        <li><a th:href="@{/logout}">ログアウト</a></li>
                     </ul>
                 </nav>
-                -->
-            </section>
-        </main>
-
-        <!-- サイドメニュー -->
-        <div id="menubar">
-            <h3>MENU</h3>
-            <nav>
-                <ul>
-                    <li><a th:href="@{/admin/studentList}">学生情報</a></li>
-                    <li><a th:href="@{/admin/examList}">試験情報</a></li>
-                    <li><a th:href="@{/admin/adminList}">管理者情報</a></li>                    
-                    <li><a th:href="@{/logout}">ログアウト</a></li>
-                </ul>
-            </nav>
+            </div>
         </div>
+
+        <!-- フッター -->
+        <div th:replace="fragments/common :: footer"></div>
+
+    </div> <!-- /#container -->
+
+    <!-- ページトップボタン -->
+    <div class="pagetop"><a href="#">▲</a></div>
+
+    <!-- ハンバーガーメニューアイコン -->
+    <div id="menubar_hdr">
+        <div class="menu-icon"><span></span><span></span><span></span></div>
     </div>
 
-    <!-- フッター -->
-    <footer>
-        <small>&copy; <a th:href="@{/}">SAMPLE COMPANY</a> All Rights Reserved.</small>
-        <span class="pr">
-            <a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a>
-        </span>
-    </footer>
-</div> <!-- /#container -->
-
-<!-- ページトップボタン -->
-<div class="pagetop"><a href="#">▲</a></div>
-
-<!-- ハンバーガーメニューアイコン -->
-<div id="menubar_hdr">
-    <div class="menu-icon"><span></span><span></span><span></span></div>
-</div>
-
-<!-- JS読み込み -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script th:src="@{/js/main.js}"></script>
+    <!-- JS読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
 </body>
 </html>

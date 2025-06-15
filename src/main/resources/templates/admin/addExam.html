@@ -9,71 +9,64 @@
 </head>
 <body>
     <div id="container">
-    <!-- ヘッダー -->
-    <header>
-        <h1 id="logo">Sample Company</h1>
-        <address>TEL:098-000-000</address>
-    </header>
+        <!-- ヘッダー -->
+        <div th:replace="fragments/common :: header"></div>
 
-    <!-- メインイメージ -->
-    <aside id="mainimg">
-        <img th:src="@{/images/1.jpg}" alt="メインイメージ" style="width:100%; height:30vh;" />
-    </aside>
+        <!-- メインイメージ -->
+        <div th:replace="fragments/common :: mainimg"></div>
 
-    <!-- コンテンツ + サイドメニュー -->
-    <div id="contents">
-        <main>
-            <section>
-                <h2>試験情報追加</h2>
-                <p>試験情報を入力してください。</p>
-
-                <form th:action="@{/admin/addExam}" method="post" th:object="${examDto}">
-                
-                <!-- メッセージ表示 -->
-                <div th:if="${successMessage}" class="text-success" style="color: green; margin-bottom:1rem;" th:text="${successMessage}"></div>
-                <div th:if="${errorMessage}" class="text-error" style="color: red; margin-bottom:1rem;" th:text="${errorMessage}"></div>
-
-                <!-- 入力エラー表示 -->
-                <div th:if="${#fields.hasErrors('examId')}" style="color: red; margin-bottom:0.5rem;" th:errors="*{examId}"></div>
-                <div th:if="${#fields.hasErrors('examName')}" style="color: red; margin-bottom:0.5rem;" th:errors="*{examName}"></div>
-                <div th:if="${#fields.hasErrors('examDate')}" style="color: red; margin-bottom:0.5rem;" th:errors="*{examDate}"></div>
-                <div th:if="${#fields.hasErrors('perfForm')}" style="color: red; margin-bottom:0.5rem;" th:errors="*{perfForm}"></div>
-                <div th:if="${#fields.hasErrors('applicationDeadline')}" style="color: red; margin-bottom:0.5rem;" th:errors="*{applicationDeadline}"></div>
-
+        <!-- コンテンツ + サイドメニュー -->
+        <div id="contents">
+            <main>
                 <section>
-                    <table class="ta1">
-                        <tr><th>試験ID</th><td><input type="text" th:field="*{examId}" /></td></tr>
-                        <tr><th>試験名</th><td><input type="text" th:field="*{examName}" /></td></tr>
-                        <tr><th>試験日</th><td><input type="date" th:field="*{examDate}" /></td></tr>
-                        <tr><th>編成</th><td><input type="text" th:field="*{perfForm}" /></td></tr>
-                        <tr><th>申請期限</th><td><input type="date" th:field="*{applicationDeadline}" /></td></tr>
-                    </table>
+                    <h2>試験情報追加</h2>
+                    <p>試験情報を入力してください。</p>
+
+                    <form th:action="@{/admin/addExam}" method="post" th:object="${examDto}">
+                    
+                    <!-- メッセージ表示 -->
+                    <div th:if="${successMessage}" class="text-success" style="color: green; margin-bottom:1rem;" th:text="${successMessage}"></div>
+                    <div th:if="${errorMessage}" class="text-error" style="color: red; margin-bottom:1rem;" th:text="${errorMessage}"></div>
+
+                    <!-- 入力エラー表示 -->
+                    <div th:if="${#fields.hasErrors('examId')}" style="color: red; margin-bottom:0.5rem;" th:errors="*{examId}"></div>
+                    <div th:if="${#fields.hasErrors('examName')}" style="color: red; margin-bottom:0.5rem;" th:errors="*{examName}"></div>
+                    <div th:if="${#fields.hasErrors('examDate')}" style="color: red; margin-bottom:0.5rem;" th:errors="*{examDate}"></div>
+                    <div th:if="${#fields.hasErrors('perfForm')}" style="color: red; margin-bottom:0.5rem;" th:errors="*{perfForm}"></div>
+                    <div th:if="${#fields.hasErrors('applicationDeadline')}" style="color: red; margin-bottom:0.5rem;" th:errors="*{applicationDeadline}"></div>
+
+                    <section>
+                        <table class="ta1">
+                            <tr><th>試験ID</th><td><input type="text" th:field="*{examId}" /></td></tr>
+                            <tr><th>試験名</th><td><input type="text" th:field="*{examName}" /></td></tr>
+                            <tr><th>試験日</th><td><input type="date" th:field="*{examDate}" /></td></tr>
+                            <tr><th>編成</th><td><input type="text" th:field="*{perfForm}" /></td></tr>
+                            <tr><th>申請期限</th><td><input type="date" th:field="*{applicationDeadline}" /></td></tr>
+                        </table>
+                    </section>
+                    <div class="form-action">
+                        <button class="btn" type="submit" name="action" value="add" onclick="return confirm('登録しますか？')">登録</button>
+                        <button class="btn" type="submit" name="action" value="back">戻る</button>
+                    </div>
+                    </form>
                 </section>
-                <div class="form-action">
-                    <button class="btn" type="submit" name="action" value="add" onclick="return confirm('登録しますか？')">登録</button>
-                    <button class="btn" type="submit" name="action" value="back">戻る</button>
-                </div>
-                </form>
-            </section>
-        </main>
+            </main>
 
-        <!-- サイドメニュー -->
-        <div id="menubar">
-        <h3>MENU</h3>
-        <nav>
-            <ul>
-            <li><a th:href="@{/admin/examList}">試験一覧へ</a></li>
-            <li><a th:href="@{/logout}">ログアウト</a></li>
-            </ul>
-        </nav>
-        </div>
-    </div> <!-- /#contents -->
+            <!-- サイドメニュー -->
+            <div id="menubar">
+            <h3>MENU</h3>
+            <nav>
+                <ul>
+                <li><a th:href="@{/admin/examList}">試験一覧へ</a></li>
+                <li><a th:href="@{/logout}">ログアウト</a></li>
+                </ul>
+            </nav>
+            </div>
+        </div> <!-- /#contents -->
 
-    <!-- フッター -->
-    <footer>
-        <small>&copy; <a th:href="@{/}">SAMPLE COMPANY</a> All Rights Reserved.</small>
-        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
-    </footer>
+        <!-- フッター -->
+        <div th:replace="fragments/common :: footer"></div>
+
     </div> <!-- /#container -->
 
     <!-- ページトップボタン -->

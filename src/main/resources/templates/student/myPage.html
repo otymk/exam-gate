@@ -10,15 +10,10 @@
 <body>
     <div id="container">
         <!-- ヘッダー -->
-        <header>
-            <h1 id="logo">Sample Company</h1>
-            <address>TEL:098-000-000</address>
-        </header>
+        <div th:replace="fragments/common :: header"></div>
 
         <!-- メインイメージ -->
-        <aside id="mainimg">
-            <img th:src="@{/images/1.jpg}" alt="メインイメージ" style="width:100%; height:30vh;" />
-        </aside>
+        <div th:replace="fragments/common :: mainimg"></div>
 
         <!-- コンテンツ + サイドメニュー -->
         <div id="contents">
@@ -46,6 +41,7 @@
                 <h3>MENU</h3>
                 <nav>
                     <ul>
+                        <li><a th:href="@{/student/studentMenu}">ホーム</a></li>
                         <li><a th:href="@{/student/selectExam}">試験一覧</a></li>
                         <li><a th:href="@{/logout}">ログアウト</a></li>
                     </ul>
@@ -54,12 +50,8 @@
         </div><!--#contents-->
 
         <!-- フッター -->
-        <footer>
-            <small>&copy; <a th:href="@{/}">SAMPLE COMPANY</a> All Rights Reserved.</small>
-            <span class="pr">
-                <a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a>
-            </span>
-        </footer>
+        <div th:replace="fragments/common :: footer"></div>
+
     </div><!--#container-->
 
     <!-- ページトップボタン -->

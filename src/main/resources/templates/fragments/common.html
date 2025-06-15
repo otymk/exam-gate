@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>トップページ: ログイン</title>
+    <!-- 共通スタイルを適用 -->
+    <link rel="stylesheet" th:href="@{/css/stylewhite.css}" />
+</head>
+
+<body>
+    <!-- ヘッダー -->
+    <header th:fragment="header">
+        <h1 id="logo">音楽大学 学内試験</h1>
+    </header>
+
+    <!-- フッター -->
+    <footer th:fragment="footer">
+        <small>&copy; <a th:href="@{/}">SAMPLE COMPANY</a> All Rights Reserved.</small>
+        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+    </footer>
+
+    <!-- トップイメージ -->
+    <aside id="mainimg" th:fragment="mainimg">
+        <img th:src="@{/images/1.jpg}" alt="メインイメージ" />
+    </aside>
+
+</body>
+</html>

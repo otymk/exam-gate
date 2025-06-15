@@ -8,94 +8,87 @@
   <link rel="stylesheet" th:href="@{/css/stylewhite.css}" />
 </head>
 <body>
-<div id="container">
-  <!-- ヘッダー -->
-  <header>
-      <h1 id="logo">Sample Company</h1>
-      <address>TEL:098-000-000</address>
-  </header>
+  <div id="container">
+    <!-- ヘッダー -->
+    <div th:replace="fragments/common :: header"></div>
 
-  <!-- メインイメージ -->
-  <aside id="mainimg">
-    <img th:src="@{/images/1.jpg}" alt="メインイメージ" style="width:100%; height:30vh;" />
-  </aside>
+    <!-- メインイメージ -->
+    <div th:replace="fragments/common :: mainimg"></div>
 
-  <!-- コンテンツ + サイドメニュー -->
-  <div id="contents">
-    <main>
-      <section>
-        <h2 th:text="${examInfo.examName} + ' 対象者登録'"></h2>
-        <p>登録する学生を選択してください。</p>
+    <!-- コンテンツ + サイドメニュー -->
+    <div id="contents">
+      <main>
+        <section>
+          <h2 th:text="${examInfo.examName} + ' 対象者登録'"></h2>
+          <p>登録する学生を選択してください。</p>
 
-        <form th:action="@{/admin/addExamTarget}" method="post" th:object="${form}">
-          
-            <!-- メッセージ表示 -->
-            <div th:if="${successMessage}" class="text-success" th:text="${successMessage}" style="color: green; margin-bottom:1rem;"></div>
-            <div th:if="${errorMessage}" class="text-error" th:text="${errorMessage}" style="color: red; margin-bottom:1rem;"></div>
+          <form th:action="@{/admin/addExamTarget}" method="post" th:object="${form}">
             
-            <!-- 入力エラー表示 -->
-            <div th:errors="*{studentIds}" class="text-error" style="color: red; margin-bottom:1rem;"></div>
+              <!-- メッセージ表示 -->
+              <div th:if="${successMessage}" class="text-success" th:text="${successMessage}" style="color: green; margin-bottom:1rem;"></div>
+              <div th:if="${errorMessage}" class="text-error" th:text="${errorMessage}" style="color: red; margin-bottom:1rem;"></div>
+              
+              <!-- 入力エラー表示 -->
+              <div th:errors="*{studentIds}" class="text-error" style="color: red; margin-bottom:1rem;"></div>
 
-            <section>
-                <table class="ta-admin">
-                <thead>
-                    <tr>
-                        <th>選択</th>
-                        <th>学生番号</th>
-                        <th>氏名</th>
-                    </tr>
-                </thead>
-                    <tbody>
-                        <tr th:each="student : ${nyStudents}">
-                            <td>
-                                <input type="checkbox" th:field="*{studentIds}" th:value="${student.studentId}">
-                            </td>
-                            <td th:text="${student.studentId}"></td>
-                            <td th:text="${student.name}"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-            
-            <div class="form-action" style="text-align: left;">
-                <button class="btn" type="submit" name="action" value="add" onclick="return confirm('登録しますか？')">登録</button>
-                <button class="btn" type="submit" name="action" value="back">戻る</button>
-            </div>
-            
-        </form>
-      </section>
-    </main>
+              <section>
+                  <table class="ta-admin">
+                  <thead>
+                      <tr>
+                          <th>選択</th>
+                          <th>学生番号</th>
+                          <th>氏名</th>
+                      </tr>
+                  </thead>
+                      <tbody>
+                          <tr th:each="student : ${nyStudents}">
+                              <td>
+                                  <input type="checkbox" th:field="*{studentIds}" th:value="${student.studentId}">
+                              </td>
+                              <td th:text="${student.studentId}"></td>
+                              <td th:text="${student.name}"></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </section>
+              
+              <div class="form-action" style="text-align: left;">
+                  <button class="btn" type="submit" name="action" value="add" onclick="return confirm('登録しますか？')">登録</button>
+                  <button class="btn" type="submit" name="action" value="back">戻る</button>
+              </div>
+              
+          </form>
+        </section>
+      </main>
 
-    <!-- サイドメニュー -->
-    <div id="menubar">
-      <h3>MENU</h3>
-      <nav>
-        <ul>
-          <li><a th:href="@{/admin/examList}">試験一覧へ戻る</a></li>
-          <li><a th:href="@{/admin/adminMenu}">管理者メニュー</a></li>
-          <li><a th:href="@{/logout}">ログアウト</a></li>
-        </ul>
-      </nav>
-    </div>
-  </div> <!-- /#contents -->
+      <!-- サイドメニュー -->
+      <div id="menubar">
+        <h3>MENU</h3>
+        <nav>
+          <ul>
+            <li><a th:href="@{/admin/examList}">試験一覧へ戻る</a></li>
+            <li><a th:href="@{/admin/adminMenu}">管理者メニュー</a></li>
+            <li><a th:href="@{/logout}">ログアウト</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div> <!-- /#contents -->
 
-  <!-- フッター -->
-  <footer>
-    <small>&copy; <a th:href="@{/}">SAMPLE COMPANY</a> All Rights Reserved.</small>
-    <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
-  </footer>
-</div> <!-- /#container -->
+    <!-- フッター -->
+    <div th:replace="fragments/common :: footer"></div>
+  
+  </div> <!-- /#container -->
 
-<!-- ページトップボタン -->
-<div class="pagetop"><a href="#">▲</a></div>
+  <!-- ページトップボタン -->
+  <div class="pagetop"><a href="#">▲</a></div>
 
-<!-- ハンバーガーメニューアイコン -->
-<div id="menubar_hdr">
-  <div class="menu-icon"><span></span><span></span><span></span></div>
-</div>
+  <!-- ハンバーガーメニューアイコン -->
+  <div id="menubar_hdr">
+    <div class="menu-icon"><span></span><span></span><span></span></div>
+  </div>
 
-<!-- JS読み込み -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script th:src="@{/js/main.js}"></script>
+  <!-- JS読み込み -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script th:src="@{/js/main.js}"></script>
 </body>
 </html>
