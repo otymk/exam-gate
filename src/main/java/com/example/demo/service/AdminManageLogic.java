@@ -1,17 +1,11 @@
 package com.example.demo.service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Service;
 import com.example.demo.dao.AdminRepository;
 import com.example.demo.dto.AdminDto;
-import com.example.demo.dto.AdminLoginForm;
-import com.example.demo.dto.AdminLoginResult;
-import com.example.demo.dto.ExamDto;
 import com.example.demo.model.Admin;
-import com.example.demo.model.Exam;
 
 @Service
 public class AdminManageLogic {

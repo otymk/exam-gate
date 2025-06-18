@@ -2,10 +2,6 @@ package com.example.demo.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import com.example.demo.model.Exam;
-import com.example.demo.model.Student;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

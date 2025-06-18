@@ -3,12 +3,10 @@ package com.example.demo.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 import com.example.demo.dao.ApplicationRepository;
 import com.example.demo.dao.ExamTargetRepository;
 import com.example.demo.dto.ApplicationDto;
-import com.example.demo.dto.ExamTargetForm;
 import com.example.demo.dto.ExamTargetStatusDto;
 import com.example.demo.model.Application;
 import com.example.demo.model.ExamTarget;

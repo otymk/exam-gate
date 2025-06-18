@@ -1,17 +1,13 @@
 package com.example.demo.service;
 
 import org.springframework.stereotype.Service;
-
 import com.example.demo.dao.ApplicationRepository;
 import com.example.demo.dao.ExamRepository;
 import com.example.demo.dao.StudentRepository;
-import com.example.demo.dto.ApplicationData;
 import com.example.demo.dto.ApplicationForm;
 import com.example.demo.model.Application;
 import com.example.demo.model.Exam;
 import com.example.demo.model.Student;
-
-import jakarta.servlet.http.HttpSession;
 
 @Service
 public class ApplyLogic {

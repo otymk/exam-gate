@@ -3,7 +3,6 @@ package com.example.demo.service;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 import com.example.demo.dao.AdminRepository;
-import com.example.demo.dao.ExamTargetRepository;
 import com.example.demo.dao.StudentRepository;
 import com.example.demo.dto.AdminLoginForm;
 import com.example.demo.dto.AdminLoginResult;

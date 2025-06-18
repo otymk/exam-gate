@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.dao.AdminRepository;
 import com.example.demo.dto.AdminDto;
-import com.example.demo.dto.AdminLoginResult;
-import com.example.demo.dto.StudentDto;
 import com.example.demo.service.AdminManageLogic;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
